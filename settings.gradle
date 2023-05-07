@@ -1,0 +1,22 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "Eye of the Law"
+include ':app'
+include ':data:mehrie:repository'
+include ':domain:mehrie'
+include ':data:nim_ashr_dolati:repository'
+include ':domain:nim_ashr_dolati'
+include ':functions:nim_ashr_dolati'
+include ':functions:mehrie'
