@@ -19,9 +19,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
@@ -36,7 +33,7 @@ fun JetTextField(
     modifier: Modifier = Modifier,
     title: String,
     height: Int = 56,
-    value: String = "",
+    value: String,
     placeholder: String,
     style: TextStyle = TextStyle(
         color = MaterialTheme.colorScheme.onBackground,
@@ -49,9 +46,7 @@ fun JetTextField(
     maxLines: Int = 1,
     shape: Int = 3,
     readOnly: Boolean = false,
-    keyboardType: KeyboardType = KeyboardType.Text,
-    isPasswordToggleDisplayed: Boolean = keyboardType == KeyboardType.Password,
-    isPasswordVisible: Boolean = false,
+    keyboardType: KeyboardType = KeyboardType.Number,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
     onValueChange: (String) -> Unit
@@ -102,11 +97,6 @@ fun JetTextField(
             keyboardOptions = KeyboardOptions(
                 keyboardType = keyboardType
             ),
-            visualTransformation = if (!isPasswordVisible && isPasswordToggleDisplayed) {
-                PasswordVisualTransformation()
-            } else {
-                VisualTransformation.None
-            },
             singleLine = singleLine,
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = Color.White,
@@ -127,6 +117,7 @@ fun PreviewJetTextField() {
         JetTextField(
             title = "عنوان",
             placeholder = "نگهدارنده عنوان",
+            value = "",
             onValueChange = {}
         )
     }

@@ -41,7 +41,7 @@ fun HomeScreen(
                         when(index) {
                         0 -> {
                             JetCategory(
-                                title = "نیم عشر دولتیپ",
+                                title = "نیم عشر دولتی",
                                 image = R.drawable.secret,
                                 onClick = { toNimAshrScreen() }
                             )

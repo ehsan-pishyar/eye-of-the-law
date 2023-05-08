@@ -14,16 +14,13 @@ import javax.inject.Inject
 class NimAshrDolatiViewModel @Inject constructor(
     private val getResultUseCase: GetResultUseCase
 ): ViewModel() {
+
     private var _state = mutableStateOf(ResultUiState())
     val state: State<ResultUiState> = _state
 
-    init {
-        getResult()
-    }
-
-    private fun getResult() {
+    fun getResult(amount: Long) {
         viewModelScope.launch {
-            getResultUseCase.invoke().collect {
+            getResultUseCase.invoke(amount).collect {
                 _state.value = _state.value.copy(
                     success = it
                 )
