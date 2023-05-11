@@ -10,8 +10,4 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun getResult(): String =
         dataSource.getResult()
-
-    override suspend fun getResult2(): String =
-        dataSource.getResult2()
-
 }

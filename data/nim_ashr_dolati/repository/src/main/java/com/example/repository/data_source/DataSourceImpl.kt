@@ -8,8 +8,4 @@ class DataSourceImpl @Inject constructor(): DataSource {
         return Results.RESULT
 
     }
-
-    override suspend fun getResult2(): String {
-        return Results.RESULT2
-    }
 }

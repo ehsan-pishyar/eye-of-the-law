@@ -8,14 +8,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.eyeofthelaw.R
 import com.example.eyeofthelaw.components.JetText
 import com.example.eyeofthelaw.components.JetTextField
 
@@ -26,9 +24,7 @@ fun NimAshrDolatiScreen(
 ) {
 
     val state = viewModel.state.value
-    var amount by remember {
-        mutableStateOf("")
-    } 
+    val amount = viewModel.amount.value
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
@@ -39,23 +35,18 @@ fun NimAshrDolatiScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             JetTextField(
-                title = "مقدار",
-                placeholder = "مقدار را وارد نمائید",
+                title = stringResource(id = R.string.amount2),
+                placeholder = "${stringResource(id = R.string.placeholderName)} ${stringResource(id = R.string.p10_000_000)}",
                 value = amount,
-                onValueChange = {
-                    amount = it
-                    if (amount.isNotEmpty() || amount.isNotBlank()) {
-                        viewModel.getResult(it.toLong())
-                    } else {
-                        amount = ""
-                    }
-                }
+                onValueChange = { viewModel.setAmount(it) }
             )
             
             Spacer(modifier = Modifier.height(50.dp))
 
-            if (amount.isNotEmpty() || amount.isNotBlank()) {
-                JetText(text = state.success.result)
+            if (amount.isNotEmpty()) {
+                JetText(text = "${viewModel.getAmountThousandsSeparatorResult(state.success.result)} ${stringResource(
+                    id = R.string.rial
+                )}")
                 Spacer(modifier = Modifier.height(10.dp))
                 JetText(text = state.success.description)
             }

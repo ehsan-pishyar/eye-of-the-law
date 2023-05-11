@@ -10,12 +10,6 @@ class GetResultUseCase(
 ) {
 
     operator fun invoke(amount: Long): Flow<ResultResponse> = flow {
-        amount.let {
-            if (it < 1000) {
-                emit(ResultResponse().copy(result = "$it", description = repository.getResult()))
-            } else {
-                emit(ResultResponse().copy(result = "${it * 2}", description = repository.getResult2()))
-            }
-        }
+        emit(ResultResponse().copy(result = "$amount", description = repository.getResult()))
     }
 }

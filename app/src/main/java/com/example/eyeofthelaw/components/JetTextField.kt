@@ -12,20 +12,20 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.eyeofthelaw.ui.theme.Black
+import com.example.eyeofthelaw.ui.theme.LighterGray
 import com.example.eyeofthelaw.ui.theme.Primary
 import com.example.eyeofthelaw.ui.theme.Yekanbakh
+import com.example.eyeofthelaw.utils.ThousandSeparatorTransformation
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,6 +35,7 @@ fun JetTextField(
     height: Int = 56,
     value: String,
     placeholder: String,
+    background: Color = Color(0xFFF6F6F6),
     style: TextStyle = TextStyle(
         color = MaterialTheme.colorScheme.onBackground,
         fontSize = 14.sp,
@@ -49,7 +50,8 @@ fun JetTextField(
     keyboardType: KeyboardType = KeyboardType.Number,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
+    visualTransformation: VisualTransformation = ThousandSeparatorTransformation()
 ){
     Column(
         modifier = modifier
@@ -99,26 +101,14 @@ fun JetTextField(
             ),
             singleLine = singleLine,
             colors = TextFieldDefaults.textFieldColors(
-                containerColor = Color.White,
+                containerColor = background,
                 cursorColor = Black,
                 focusedIndicatorColor = Primary,
-                unfocusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = LighterGray,
             ),
             leadingIcon = leadingIcon,
-            trailingIcon = trailingIcon
-        )
-    }
-}
-
-@Composable
-@Preview
-fun PreviewJetTextField() {
-    CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
-        JetTextField(
-            title = "عنوان",
-            placeholder = "نگهدارنده عنوان",
-            value = "",
-            onValueChange = {}
+            trailingIcon = trailingIcon,
+            visualTransformation = visualTransformation
         )
     }
 }
