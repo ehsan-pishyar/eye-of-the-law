@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.eyeofthelaw.ui.theme.Black
@@ -63,7 +64,6 @@ fun JetTextField(
                 text = title,
                 modifier = modifier
                     .padding(horizontal = 10.dp),
-                fontFamily = Yekanbakh,
                 fontWeight = FontWeight.SemiBold
             )
         }
@@ -111,4 +111,15 @@ fun JetTextField(
             visualTransformation = visualTransformation
         )
     }
+}
+
+@Preview
+@Composable
+fun PreviewJetTextField() {
+    JetTextField(
+        title = "احسان",
+        value = "احسان پیش یار",
+        placeholder = "",
+        onValueChange = {}
+    )
 }

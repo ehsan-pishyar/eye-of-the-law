@@ -16,6 +16,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.eyeofthelaw.R
 import com.example.eyeofthelaw.components.JetText
 import com.example.eyeofthelaw.components.JetTextField
+import com.example.eyeofthelaw.utils.separateThousands
+import java.util.Locale
+import kotlin.reflect.typeOf
 
 @Composable
 fun NimAshrDolatiScreen(
@@ -44,9 +47,7 @@ fun NimAshrDolatiScreen(
             Spacer(modifier = Modifier.height(50.dp))
 
             if (amount.isNotEmpty()) {
-                JetText(text = "${viewModel.getAmountThousandsSeparatorResult(state.success.result)} ${stringResource(
-                    id = R.string.rial
-                )}")
+                JetText(text = "${state.success.result.separateThousands()} ${stringResource(id = R.string.rial)}")
                 Spacer(modifier = Modifier.height(10.dp))
                 JetText(text = state.success.description)
             }

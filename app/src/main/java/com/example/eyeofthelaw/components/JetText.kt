@@ -39,8 +39,7 @@ fun JetText(
         textAlign = textAlign,
         maxLines = maxLines,
         fontFamily = fontFamily,
-        fontStyle = fontStyle,
-
+        fontStyle = fontStyle
     )
 }
 

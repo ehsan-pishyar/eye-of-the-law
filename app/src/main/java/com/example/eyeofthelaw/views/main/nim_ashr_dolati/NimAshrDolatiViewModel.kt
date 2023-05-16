@@ -4,20 +4,18 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.eyeofthelaw.state.ResultUiState
-import com.example.eyeofthelaw.utils.thousandsSeparator
-import com.example.nim_ashr_dolati.use_cases.GetResultUseCase
+import com.example.nim_ashr_dolati.use_cases.GetNimAshrResultUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class NimAshrDolatiViewModel @Inject constructor(
-    private val getResultUseCase: GetResultUseCase
+    private val getNimAshrResultUseCase: GetNimAshrResultUseCase
 ): ViewModel() {
 
-    private var _state = mutableStateOf(ResultUiState())
-    val state: State<ResultUiState> = _state
+    private var _state = mutableStateOf(NimAshrResultUiState())
+    val state: State<NimAshrResultUiState> = _state
 
     private var _amount = mutableStateOf("")
     val amount: State<String> get() = _amount
@@ -33,15 +31,11 @@ class NimAshrDolatiViewModel @Inject constructor(
 
     private fun getResult(amount: Long) {
         viewModelScope.launch {
-            getResultUseCase.invoke(amount).collect {
+            getNimAshrResultUseCase.invoke(amount).collect {
                 _state.value = _state.value.copy(
                     success = it
                 )
             }
         }
-    }
-
-    fun getAmountThousandsSeparatorResult(amount: String): String {
-        return thousandsSeparator(amount)
     }
 }

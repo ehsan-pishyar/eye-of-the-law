@@ -12,12 +12,13 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/data" />
-            <option value="$PROJECT_DIR$/data/common" />
+            <option value="$PROJECT_DIR$/data/inflation_index" />
             <option value="$PROJECT_DIR$/data/mehrie" />
             <option value="$PROJECT_DIR$/data/mehrie/repository" />
             <option value="$PROJECT_DIR$/data/nim_ashr_dolati" />
             <option value="$PROJECT_DIR$/data/nim_ashr_dolati/repository" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/domain/common" />
             <option value="$PROJECT_DIR$/domain/mehrie" />
             <option value="$PROJECT_DIR$/domain/nim_ashr_dolati" />
           </set>
