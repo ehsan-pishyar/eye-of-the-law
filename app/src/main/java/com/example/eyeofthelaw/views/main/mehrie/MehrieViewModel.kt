@@ -25,6 +25,9 @@ class MehrieViewModel @Inject constructor(
     private var _inflationIndexState = mutableStateOf(InflationIndexUiState())
     val inflationIndexState: State<InflationIndexUiState> get() = _inflationIndexState
 
+    private var _mehrieTypeState = mutableStateOf("")
+    val mehrieTypeState: State<String> get() = _mehrieTypeState
+
     private var _amountState = mutableStateOf("")
     val amountState: State<String> get() = _amountState
 
@@ -38,8 +41,23 @@ class MehrieViewModel @Inject constructor(
         getInflationIndex()
     }
 
-    fun setAmount(newAmount: String) {
+    fun setMehrieTypeState(type: String) {
+        viewModelScope.launch {
+            _mehrieTypeState.value = type
+        }
+    }
+
+    fun setMoneyAmount(newAmount: String, aghdInflationIndex: Double, pardakhtInflationIndex: Double) {
         _amountState.value = newAmount
+        if (newAmount.isNotEmpty()) {
+            getMoneyResult(
+                aghdInflationIndex,
+                pardakhtInflationIndex,
+                newAmount.toLong()
+            )
+        } else {
+            _amountState.value = ""
+        }
     }
 
     fun setAghdInflationIndex(newAghdInflationIndex: Double) {
@@ -48,18 +66,6 @@ class MehrieViewModel @Inject constructor(
 
     fun setPardakhtInflationIndex(newPardakhtInflationIndex: Double) {
         _pardakhtInflationIndex.value = newPardakhtInflationIndex
-    }
-
-    fun getMoneyFinalResult(
-        aghdInflationIndex: Double,
-        pardakhtInflationIndex: Double,
-        aghdYear: Int,
-        pardakhtYear: Int,
-        amount: Long
-    ) {
-        if (pardakhtYear > aghdYear) {
-
-        }
     }
 
     private fun getMoneyResult(

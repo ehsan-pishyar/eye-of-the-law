@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.eyeofthelaw.ui.theme.Black
 import com.example.eyeofthelaw.ui.theme.LighterGray
-import com.example.eyeofthelaw.ui.theme.Primary
+import com.example.eyeofthelaw.ui.theme.Secondary
 import com.example.eyeofthelaw.ui.theme.Yekanbakh
 import com.example.eyeofthelaw.utils.ThousandSeparatorTransformation
 
@@ -32,11 +32,11 @@ import com.example.eyeofthelaw.utils.ThousandSeparatorTransformation
 @Composable
 fun JetTextField(
     modifier: Modifier = Modifier,
-    title: String,
+    title: String = "",
     height: Int = 56,
     value: String,
-    placeholder: String,
-    background: Color = Color(0xFFF6F6F6),
+    placeholder: String = "",
+    background: Color = Color.White,
     style: TextStyle = TextStyle(
         color = MaterialTheme.colorScheme.onBackground,
         fontSize = 14.sp,
@@ -103,8 +103,10 @@ fun JetTextField(
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = background,
                 cursorColor = Black,
-                focusedIndicatorColor = Primary,
+                focusedIndicatorColor = Secondary,
                 unfocusedIndicatorColor = LighterGray,
+                focusedLabelColor = Secondary,
+                unfocusedLabelColor = LighterGray
             ),
             leadingIcon = leadingIcon,
             trailingIcon = trailingIcon,
